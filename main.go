@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/jrowles447/go-weather-app/app"
 )
 
 func main() {
@@ -17,6 +19,11 @@ func main() {
 
 	// take user input for zip code
 	fmt.Scanln(&zip)
+
+	// validate that zip is 5 digits
+	if validated := app.ValidateZip(zip); !validated {
+		fmt.Printf("Zip code must be 5 digits, you provided: '%s'\n", zip)
+	}
 
 	// parse zip code value to int
 	parsedZip, err := strconv.ParseInt(zip, 10, 64)
