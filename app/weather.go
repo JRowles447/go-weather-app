@@ -14,7 +14,7 @@ func QueryWeather() {
 
 }
 
-// ValidateZip ensures the zip code has a valid format
+// ValidateZip ensures the zip code has a valid 5 digit format
 func ValidateZip(zip string) bool {
 	regex := regexp.MustCompile(`^\d{5}$`)
 

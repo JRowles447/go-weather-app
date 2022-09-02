@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strconv"
 
 	"github.com/jrowles447/go-weather-app/app"
 )
@@ -15,7 +13,6 @@ func main() {
 	fmt.Printf("> ")
 
 	var zip string
-	var parsedZip int64
 
 	// take user input for zip code
 	fmt.Scanln(&zip)
@@ -25,12 +22,5 @@ func main() {
 		fmt.Printf("Zip code must be 5 digits, you provided: '%s'\n", zip)
 	}
 
-	// parse zip code value to int
-	parsedZip, err := strconv.ParseInt(zip, 10, 64)
-	if err != nil { // if there is a parsing error, exit
-		fmt.Printf("You did not provide a valid zip code, please try again\n")
-		os.Exit(-1)
-	}
-
-	fmt.Printf("You provided: '%d'", parsedZip)
+	fmt.Printf("You provided: '%s'", zip)
 }
