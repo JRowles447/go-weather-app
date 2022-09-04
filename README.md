@@ -7,7 +7,20 @@ In order to run the application, clone the repository and run the following from
 go run . 
 ```
 
+## To Test
+To test the application, run the following: 
+```
+go test ./app
+```
+
+To generate and view a coverage report, run the following: 
+```
+go test -coverprofile=coverage.out ./app
+go tool cover -html=coverage.out
+```
+
 ## TODO
+* Check that provided zip is valid. 
 * Identify weather API 
 * Implement query 
 * Implement parsing for results for user
