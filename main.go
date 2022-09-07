@@ -32,7 +32,7 @@ func main() {
 		fmt.Printf("Zip code must be 5 digits, you provided: '%s'\n", zip)
 	}
 
-	fmt.Printf("You provided: '%s'", zip)
+	fmt.Printf("You provided: '%s'\n", zip)
 
 	conf.ConvertZipToCoordinates(zip)
 }

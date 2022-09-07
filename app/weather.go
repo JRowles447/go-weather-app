@@ -1,7 +1,9 @@
 package app
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"regexp"
@@ -31,8 +33,8 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 	// create request to send to OpenWeather API
 	// http://api.openweathermap.org/geo/1.0/zip?zip=<ZIP>,US&appid=<APPID>
 	client := &http.Client{}
+
 	endpoint := fmt.Sprintf("http://api.openweathermap.org/geo/1.0/zip?zip=%s,US&appid=%s", zip, conf.WeatherApiKey)
-	fmt.Printf("endpoint: %s", endpoint)
 	req, err := http.NewRequest("GET", endpoint, nil)
 
 	resp, err := client.Do(req)
@@ -41,12 +43,20 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 		fmt.Printf("Error sending request to endpoint")
 	}
 
-	fmt.Printf("resp is: ", resp.Body)
-
 	defer resp.Body.Close()
 
-	fmt.Printf("The response code is: %s\n", resp.Status)
-	return 0.0, 0.0
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("Error reading response from OpenWeatherAPI zip converter")
+	}
+
+	var openWeatherResp OpenWeatherCoordinateResponse
+	if err := json.Unmarshal(body, &openWeatherResp); err != nil {
+		fmt.Println("Issue unmarshalling response from OpenWeatherAPI zip converter")
+	}
+
+	fmt.Printf("Zip:%s, Longitude: %f, Latitude: %f\n", zip, openWeatherResp.Longitude, openWeatherResp.Latitude)
+	return openWeatherResp.Longitude, openWeatherResp.Latitude
 }
 
 // QueryWeather queries the OpenWeather API for weather based on latitude + longitude
