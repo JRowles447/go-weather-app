@@ -14,9 +14,9 @@ type Conf struct {
 // parse environment variables needed for application
 func ParseEnv() *Conf {
 	conf := Conf{}
-	conf.WeatherApiKey = os.Getenv("WEATHER_API")
+	conf.WeatherApiKey = os.Getenv("WEATHER_API_KEY")
 
-	fmt.Printf("WEATHER_API: %s", conf.WeatherApiKey)
+	fmt.Printf("WEATHER_API: %s\n", conf.WeatherApiKey)
 	return &conf
 }
 
