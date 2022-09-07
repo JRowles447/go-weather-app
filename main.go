@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	conf := app.ParseEnv()
+
 	fmt.Println("Welcome to Go-Weather-App!")
 	fmt.Printf("\tI can provide you with weather information based on your zip code\n\n")
 	fmt.Printf("Please provide a zip code!\n")
@@ -23,4 +25,6 @@ func main() {
 	}
 
 	fmt.Printf("You provided: '%s'", zip)
+
+	conf.ConvertZipToCoordinates(zip)
 }
