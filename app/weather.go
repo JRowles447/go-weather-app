@@ -29,6 +29,7 @@ func RetrieveZip() {
 
 // ConvertZipToCoordinates calls the OpenWeather API to retreive latitude + longitude
 // corresponding to a zip.
+// More information about OpenWeather zip converter API: https://openweathermap.org/api/geocoding-api#direct_name_how
 func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 	// create request to send to OpenWeather API
 	// http://api.openweathermap.org/geo/1.0/zip?zip=<ZIP>,US&appid=<APPID>
@@ -59,6 +60,7 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 }
 
 // QueryWeather queries the OpenWeather API for weather based on latitude + longitude
+// For more information about the OpenWeather current weather API, refer to the following: https://openweathermap.org/current
 func (conf *Conf) QueryWeather(long float64, lat float64) int {
 	client := &http.Client{}
 
