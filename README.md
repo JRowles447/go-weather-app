@@ -1,5 +1,5 @@
 # go-weather-app
-This app prompts a user for a zip code and provides them with current weather information based on their location. 
+This app prompts a user for a zip code and provides them with current weather information based on their location. Under the hood it leverages the OpenWeather API. For more information about the OpenWeather API, please refer to the following: [OpenWeather](https://openweathermap.org/).
 
 ## To Run
 In order to run the application, clone the repository and run the following from the project root: 
@@ -20,8 +20,4 @@ go tool cover -html=coverage.out
 ```
 
 ## TODO
-* Check that provided zip is valid. 
-* Identify weather API 
-* Implement query 
-* Implement parsing for results for user
 * Add functionality to identify location of user based on IP. 

@@ -18,7 +18,6 @@ func ParseEnv() *Conf {
 	conf := Conf{}
 	conf.WeatherApiKey = os.Getenv("WEATHER_API_KEY")
 
-	fmt.Printf("WEATHER_API: %s\n", conf.WeatherApiKey)
 	return &conf
 }
 
@@ -61,7 +60,7 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 
 // QueryWeather queries the OpenWeather API for weather based on latitude + longitude
 // For more information about the OpenWeather current weather API, refer to the following: https://openweathermap.org/current
-func (conf *Conf) QueryWeather(long float64, lat float64) int {
+func (conf *Conf) QueryWeather(long float64, lat float64) OpenWeatherCurrentWeatherResult {
 	client := &http.Client{}
 
 	endpoint := fmt.Sprintf("https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&units=imperial&appid=%s", lat, long, conf.WeatherApiKey)
@@ -85,7 +84,7 @@ func (conf *Conf) QueryWeather(long float64, lat float64) int {
 	}
 	fmt.Printf("City: %s, Longitude: %f, Latitude: %f, Temperature: %f\n", openWeatherResp.Name, openWeatherResp.Coordinates.Longitude, openWeatherResp.Coordinates.Latitude, openWeatherResp.Main.Temp)
 
-	return 0
+	return openWeatherResp
 }
 
 // ValidateZip ensures the zip code has a valid 5 digit format
@@ -93,4 +92,9 @@ func ValidateZip(zip string) bool {
 	regex := regexp.MustCompile(`^\d{5}$`)
 
 	return regex.Match([]byte(zip))
+}
+
+func FormatWeatherResultString(currentWeather OpenWeatherCurrentWeatherResult) string {
+
+	return ""
 }

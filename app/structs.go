@@ -1,9 +1,5 @@
 package app
 
-// type OpenWeatherCoordinateRequest struct {
-
-// }
-
 // struct for parsing and handling response from OpenWeather zip converter API.
 type OpenWeatherCoordinateResponse struct {
 	Zip       string  `json:"zip"`
