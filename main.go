@@ -34,5 +34,7 @@ func main() {
 
 	fmt.Printf("You provided: '%s'\n", zip)
 
-	conf.ConvertZipToCoordinates(zip)
+	long, lat := conf.ConvertZipToCoordinates(zip)
+
+	conf.QueryWeather(long, lat)
 }

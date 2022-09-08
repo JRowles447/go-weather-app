@@ -38,7 +38,6 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 	req, err := http.NewRequest("GET", endpoint, nil)
 
 	resp, err := client.Do(req)
-
 	if err != nil {
 		fmt.Printf("Error sending request to endpoint")
 	}
@@ -60,7 +59,29 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 }
 
 // QueryWeather queries the OpenWeather API for weather based on latitude + longitude
-func QueryWeather(long float64, lat float64) int {
+func (conf *Conf) QueryWeather(long float64, lat float64) int {
+	client := &http.Client{}
+
+	endpoint := fmt.Sprintf("https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&units=imperial&appid=%s", lat, long, conf.WeatherApiKey)
+	req, err := http.NewRequest("GET", endpoint, nil)
+
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Printf("Error sending request to endpoint")
+	}
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("Error reading response from OpenWeatherAPI zip converter")
+	}
+
+	var openWeatherResp OpenWeatherCurrentWeatherResult
+	if err := json.Unmarshal(body, &openWeatherResp); err != nil {
+		fmt.Println("Issue unmarshalling response from OpenWeatherAPI current weather call")
+	}
+	fmt.Printf("City: %s, Longitude: %f, Latitude: %f, Temperature: %f\n", openWeatherResp.Name, openWeatherResp.Coordinates.Longitude, openWeatherResp.Coordinates.Latitude, openWeatherResp.Main.Temp)
 
 	return 0
 }
