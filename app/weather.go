@@ -94,6 +94,8 @@ func ValidateZip(zip string) bool {
 	return regex.Match([]byte(zip))
 }
 
+// FormatWeatherResultString constructs a string to return to the user with pertinent information
+// from the response of the OpenWeather current weather call.
 func FormatWeatherResultString(currentWeather OpenWeatherCurrentWeatherResult) string {
 
 	return ""

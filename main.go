@@ -36,5 +36,8 @@ func main() {
 
 	long, lat := conf.ConvertZipToCoordinates(zip)
 
-	conf.QueryWeather(long, lat)
+	currWeather := conf.QueryWeather(long, lat)
+
+	// print current weather response formatted
+	fmt.Printf(app.FormatWeatherResultString(currWeather))
 }
