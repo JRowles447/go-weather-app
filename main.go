@@ -30,14 +30,14 @@ func main() {
 	// validate that zip is 5 digits
 	if validated := app.ValidateZip(zip); !validated {
 		fmt.Printf("Zip code must be 5 digits, you provided: '%s'\n", zip)
+	} else {
+		fmt.Printf("You provided: '%s'\n", zip)
+
+		long, lat := conf.ConvertZipToCoordinates(zip)
+
+		currWeather := conf.QueryWeather(long, lat)
+
+		// print current weather response formatted
+		fmt.Printf(app.FormatWeatherResultString(currWeather))
 	}
-
-	fmt.Printf("You provided: '%s'\n", zip)
-
-	long, lat := conf.ConvertZipToCoordinates(zip)
-
-	currWeather := conf.QueryWeather(long, lat)
-
-	// print current weather response formatted
-	fmt.Printf(app.FormatWeatherResultString(currWeather))
 }
