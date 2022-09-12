@@ -1,4 +1,4 @@
-# go-weather-app ![CI](https://github.com/jrowles447/go-weather-app/workflows/CI/badge.svg)
+# go-weather-app [![CI](https://github.com/JRowles447/go-weather-app/actions/workflows/package.yaml/badge.svg?branch=main)](https://github.com/JRowles447/go-weather-app/actions/workflows/package.yaml)
 
 This app prompts a user for a zip code and provides them with current weather information based on their location. Under the hood it leverages the OpenWeather API. For more information about the OpenWeather API, please refer to the following: [OpenWeather](https://openweathermap.org/).
 
