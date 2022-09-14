@@ -51,4 +51,5 @@ Zip code must be 5 digits, you provided: 'badzip'
 ```
 
 ## TODO
+* Add gin server for calling with zip code 
 * Add functionality to identify location of user based on IP. 

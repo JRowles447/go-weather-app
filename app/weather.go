@@ -9,6 +9,7 @@ import (
 	"regexp"
 )
 
+// Conf for app that includes API key for OpenWeather
 type Conf struct {
 	WeatherApiKey string
 }
@@ -19,11 +20,6 @@ func ParseEnv() *Conf {
 	conf.WeatherApiKey = os.Getenv("WEATHER_API_KEY")
 
 	return &conf
-}
-
-// RetrieveZip retrieves a zip from the user
-func RetrieveZip() {
-
 }
 
 // ConvertZipToCoordinates calls the OpenWeather API to retreive latitude + longitude
