@@ -5,27 +5,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"regexp"
 )
-
-// Conf for app that includes API key for OpenWeather
-type Conf struct {
-	WeatherApiKey string
-}
-
-// parse environment variables needed for application
-func ParseEnv() *Conf {
-	conf := Conf{}
-	conf.WeatherApiKey = os.Getenv("WEATHER_API_KEY")
-
-	return &conf
-}
 
 // ConvertZipToCoordinates calls the OpenWeather API to retreive latitude + longitude
 // corresponding to a zip.
 // More information about OpenWeather zip converter API: https://openweathermap.org/api/geocoding-api#direct_name_how
-func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
+func (conf *Conf) ConvertZipToCoordinates(zip string) CoordinateResponse {
 	// create request to send to OpenWeather API
 	// http://api.openweathermap.org/geo/1.0/zip?zip=<ZIP>,US&appid=<APPID>
 	client := &http.Client{}
@@ -50,8 +36,12 @@ func (conf *Conf) ConvertZipToCoordinates(zip string) (float64, float64) {
 		fmt.Println("Issue unmarshalling response from OpenWeatherAPI zip converter")
 	}
 
-	fmt.Printf("Zip:%s, Longitude: %f, Latitude: %f\n", zip, openWeatherResp.Longitude, openWeatherResp.Latitude)
-	return openWeatherResp.Longitude, openWeatherResp.Latitude
+	res := CoordinateResponse{
+		Latitude:  openWeatherResp.Latitude,
+		Longitude: openWeatherResp.Longitude,
+	}
+
+	return res
 }
 
 // QueryWeather queries the OpenWeather API for weather based on latitude + longitude

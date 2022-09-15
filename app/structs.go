@@ -1,5 +1,14 @@
 package app
 
+type CoordinateRequest struct {
+	Zip string `json:"zip"`
+}
+
+type CoordinateResponse struct {
+	Latitude  float64 `json:"lat"`
+	Longitude float64 `json:"lon"`
+}
+
 // struct for parsing and handling response from OpenWeather zip converter API.
 type OpenWeatherCoordinateResponse struct {
 	Zip       string  `json:"zip"`
