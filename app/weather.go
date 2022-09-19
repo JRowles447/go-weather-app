@@ -79,18 +79,3 @@ func ValidateZip(zip string) bool {
 
 	return regex.Match([]byte(zip))
 }
-
-// FormatWeatherResultString constructs a string to return to the user with pertinent information
-// from the response of the OpenWeather current weather call.
-func FormatWeatherResultString(currentWeather OpenWeatherCurrentWeatherResult) string {
-	ret := `
-	City: %s
-	Weather Description: %s
-	Temperature: %f
-	Feels Like: %f
-	Humidity: %d
-	Wind Speed: %f
-	`
-	res := fmt.Sprintf(ret, currentWeather.Name, currentWeather.Weather[0].Description, currentWeather.Main.Temp, currentWeather.Main.FeelsLike, currentWeather.Main.Humidity, currentWeather.Wind.Speed)
-	return res
-}

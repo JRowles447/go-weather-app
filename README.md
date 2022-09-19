@@ -1,6 +1,6 @@
 # go-weather-app [![build](https://github.com/JRowles447/go-weather-app/actions/workflows/package.yaml/badge.svg?branch=main)](https://github.com/JRowles447/go-weather-app/actions/workflows/package.yaml)
 
-This app prompts a user for a zip code and provides them with current weather information based on their location. Under the hood it leverages the OpenWeather API. For more information about the OpenWeather API, please refer to the following: [OpenWeather](https://openweathermap.org/).
+This app runs a gin server with endpoints to query weather for a provided zip code. Under the hood it leverages the OpenWeather API. For more information about the OpenWeather API, please refer to the following: [OpenWeather](https://openweathermap.org/).
 
 ## To Run
 In order to run the application, clone the repository and run the following from the project root: 
@@ -27,29 +27,23 @@ Welcome to Go-Weather-App!
 	I can provide you with weather information based on your zip code
 
 Please provide a zip code!
-> 98121
-You provided: '98121'
-Zip:98121, Longitude: -122.344700, Latitude: 47.615100
-City: Seattle, Longitude: -122.344700, Latitude: 47.615100, Temperature: 75.700000
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
-	City: Seattle
-	Weather Description: smoke
-	Temperature: 75.700000
-	Feels Like: 75.510000
-	Humidity: 54
-	Wind Speed: 4.000000
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /zip                      --> github.com/jrowles447/go-weather-app/app.(*Conf).GetCoordinatesHandler-fm (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
 ```
 
-If there is a problem with the provided zip code, the following will be returned: 
-```
-Welcome to Go-Weather-App!
-	I can provide you with weather information based on your zip code
-
-Please provide a zip code!
-> badzip
-Zip code must be 5 digits, you provided: 'badzip'
-```
+If your application is already leveraging port 8080, you may need to update the configuration to leverage a different port number. 
 
 ## TODO
 * Add gin server for calling with zip code 
+* Add Postman collection
+* Add Swagger Spec
+* Dockerize application
 * Add functionality to identify location of user based on IP. 
