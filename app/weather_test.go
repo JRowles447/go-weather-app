@@ -2,26 +2,8 @@ package app
 
 import (
 	"fmt"
-	"os"
 	"testing"
-
-	"github.com/google/go-cmp/cmp"
 )
-
-func TestParseEnv(t *testing.T) {
-	os.Setenv("WEATHER_API_KEY", "my-weather-api-key")
-	defer os.Unsetenv("WEATHER_API_KEY")
-
-	actual := *ParseEnv()
-
-	expected := Conf{
-		WeatherApiKey: "my-weather-api-key",
-	}
-
-	if !cmp.Equal(actual, expected) {
-		t.Errorf("got %+v, want %+v", actual, expected)
-	}
-}
 
 func TestValidateZip_Valid(t *testing.T) {
 	var tests = []struct {
