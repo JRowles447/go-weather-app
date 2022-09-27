@@ -33,6 +33,7 @@ func (conf *Conf) InitializeRouter() *gin.Engine {
 	conf.Router = router
 
 	router.GET("/zip", conf.GetCoordinatesHandler)
+	router.GET("/weather", conf.QueryWeatherHandler)
 
 	return router
 }
@@ -50,4 +51,18 @@ func (conf *Conf) GetCoordinatesHandler(c *gin.Context) {
 
 	coordinates := conf.ConvertZipToCoordinates(zip.Zip)
 	c.IndentedJSON(http.StatusOK, coordinates)
+}
+
+func (conf *Conf) QueryWeatherHandler(c *gin.Context) {
+	var coordinates CoordinateResponse
+
+	if err := c.ShouldBindJSON(&coordinates); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Bad coordinates provided.",
+			"error":   err.Error(),
+		})
+	}
+
+	result := conf.QueryWeather(coordinates.Longitude, coordinates.Latitude)
+	c.IndentedJSON(http.StatusOK, result)
 }

@@ -61,9 +61,10 @@ func (conf *Conf) QueryWeather(long float64, lat float64) OpenWeatherCurrentWeat
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Printf("Error reading response from OpenWeatherAPI zip converter")
+		fmt.Printf("Error reading response from OpenWeatherAPI current weather call")
 	}
 
+	fmt.Printf("result: '%+v'", string(body))
 	var openWeatherResp OpenWeatherCurrentWeatherResult
 	if err := json.Unmarshal(body, &openWeatherResp); err != nil {
 		fmt.Println("Issue unmarshalling response from OpenWeatherAPI current weather call")
