@@ -42,8 +42,6 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 If your application is already leveraging port 8080, you may need to update the configuration to leverage a different port number. 
 
 ## TODO
-* Add gin server for calling with zip code 
-* Add Postman collection
 * Add Swagger Spec
 * Dockerize application
 * Add functionality to identify location of user based on IP. 
