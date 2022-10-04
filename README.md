@@ -2,23 +2,21 @@
 
 This app runs a gin server with endpoints to query weather for a provided zip code. Under the hood it leverages the OpenWeather API. For more information about the OpenWeather API, please refer to the following: [OpenWeather](https://openweathermap.org/).
 
-## To Run
+## To Run the Application
 In order to run the application, clone the repository and run the following from the project root: 
 ```
 go run . 
 ```
 
-### Or, run it in Docker! 
-
+### Or, Run it in Docker! 
 Build the image:
 ```
 docker build --tag go-weather-app .
-
 ```
 
 Run the image: 
 ```
-docker run go-weather-app:latest
+docker run -d -p 8080:8080 go-weather-app:latest
 ```
 
 ## To Test
@@ -33,19 +31,12 @@ go test -coverprofile=coverage.out ./app
 go tool cover -html=coverage.out
 ```
 
-## Building a Docker Image
-In order to build a Docker image for the project, run the following from the project root directory: 
-```
-docker build --tag go-weather-app .
-```
-
 ## Sample Output
 The following is sample output from running the application: 
 ```
 Welcome to Go-Weather-App!
 	I can provide you with weather information based on your zip code
 
-Please provide a zip code!
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -53,6 +44,7 @@ Please provide a zip code!
  - using code:	gin.SetMode(gin.ReleaseMode)
 
 [GIN-debug] GET    /zip                      --> github.com/jrowles447/go-weather-app/app.(*Conf).GetCoordinatesHandler-fm (3 handlers)
+[GIN-debug] GET    /weather                  --> github.com/jrowles447/go-weather-app/app.(*Conf).QueryWeatherHandler-fm (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080

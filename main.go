@@ -16,11 +16,14 @@ func main() {
 
 	fmt.Println("Welcome to Go-Weather-App!")
 	fmt.Printf("\tI can provide you with weather information based on your zip code\n\n")
-	fmt.Printf("Please provide a zip code!\n")
 
 	// scaffold application, parse env, setup router
 	conf := app.ScaffoldApp()
 
 	// start the server
 	conf.Router.Run(":8080")
+}
+
+func WelcomeMessage() string {
+	return ""
 }
