@@ -14,6 +14,8 @@ func main() {
 		fmt.Printf("Issue parsing env file!\n")
 	}
 
+	PrintWelcomeMessage()
+
 	fmt.Println("Welcome to Go-Weather-App!")
 	fmt.Printf("\tI can provide you with weather information based on your zip code\n\n")
 
@@ -24,6 +26,19 @@ func main() {
 	conf.Router.Run(":8080")
 }
 
-func WelcomeMessage() string {
-	return ""
+func PrintWelcomeMessage() {
+	msg := `
+	█     █░▓█████ ▄▄▄     ▄▄▄█████▓ ██░ ██ ▓█████  ██▀███  
+	▓█░ █ ░█░▓█   ▀▒████▄   ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀ ▓██ ▒ ██▒
+	▒█░ █ ░█ ▒███  ▒██  ▀█▄ ▒ ▓██░ ▒░▒██▀▀██░▒███   ▓██ ░▄█ ▒
+	░█░ █ ░█ ▒▓█  ▄░██▄▄▄▄██░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄ ▒██▀▀█▄  
+	░░██▒██▓ ░▒████▒▓█   ▓██▒ ▒██▒ ░ ░▓█▒░██▓░▒████▒░██▓ ▒██▒
+	░ ▓░▒ ▒  ░░ ▒░ ░▒▒   ▓▒█░ ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░░ ▒▓ ░▒▓░
+	  ▒ ░ ░   ░ ░  ░ ▒   ▒▒ ░   ░     ▒ ░▒░ ░ ░ ░  ░  ░▒ ░ ▒░
+	  ░   ░     ░    ░   ▒    ░       ░  ░░ ░   ░     ░░   ░ 
+		░       ░  ░     ░  ░         ░  ░  ░   ░  ░   ░     
+															 
+	`
+
+	fmt.Println(msg)
 }
