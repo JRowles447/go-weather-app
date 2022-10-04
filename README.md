@@ -8,6 +8,19 @@ In order to run the application, clone the repository and run the following from
 go run . 
 ```
 
+### Or, run it in Docker! 
+
+Build the image:
+```
+docker build --tag go-weather-app .
+
+```
+
+Run the image: 
+```
+docker run go-weather-app:latest
+```
+
 ## To Test
 To test the application, run the following: 
 ```
@@ -18,6 +31,12 @@ To generate and view a coverage report, run the following:
 ```
 go test -coverprofile=coverage.out ./app
 go tool cover -html=coverage.out
+```
+
+## Building a Docker Image
+In order to build a Docker image for the project, run the following from the project root directory: 
+```
+docker build --tag go-weather-app .
 ```
 
 ## Sample Output
@@ -43,5 +62,4 @@ If your application is already leveraging port 8080, you may need to update the 
 
 ## TODO
 * Add Swagger Spec
-* Dockerize application
 * Add functionality to identify location of user based on IP. 
