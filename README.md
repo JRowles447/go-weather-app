@@ -66,4 +66,8 @@ If your application is already leveraging port 8080, you may need to update the 
 
 ## TODO
 * Add Swagger Spec
-* Add functionality to identify location of user based on IP. 
+* Add functionality to identify location of user based on IP.
+* Auth? 
+* Update Dockerfile base image for go 1.22 from 1.18 
+* Improve testing
+* Workflow
